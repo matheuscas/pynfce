@@ -1,0 +1,434 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head1">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9, IE=edge" />
+    <title>
+        Nota Fiscal de Consumidor Eletrônica - NFC-e
+    </title>
+    <link href="../../arquivos_xslt/xslt.css" rel="stylesheet" type="text/css" />
+    <link href="../../arquivos_xslt/nfe-vis.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/sefaz.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/estilo_azul.css" rel="stylesheet" type="text/css" />
+    <link href="../../arquivos_xslt/sefaz_nfce.css" rel="stylesheet" type="text/css" />
+    
+    <script src="../../arquivos_xslt/jquery.js" type="text/javascript"></script>
+    
+    <script language="javascript" type="text/javascript">
+
+        function abrirJanela(url, altura, largura, posLeft, posTop) {
+            var prop;
+            prop = 'scrollbars=yes,resizable=yes,toolbar=no,directories=no,menubar=yes,width=' + largura + ',height=' + altura + ',left=' + posLeft + ',top=' + posTop;
+            window.open(url, 'NFEN', prop);
+            return (false);
+        }
+        
+    </script>
+    
+</head>
+
+<body>
+    
+    
+    
+    <form method="post" action="NFCEC_consulta_abas.aspx" id="Form">
+        <div class="aspNetHidden">
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+                value="/wEPDwUKLTI3MzYyMjQwOQ9kFgICAw9kFhYCAQ8PFgIeB1Zpc2libGVoZBYCAgEPDxYCHgRUZXh0BRZBbWJpZW50ZSBkZSBQcm9kdcOnw6NvZGQCAw8PFgIfAGhkZAIHDw8WAh8AaGRkAgkPFgQeBXZhbHVlBRFJbXByaW1pciBFbWl0ZW50ZR8AaGQCCw8WAh8AaGQCDQ8PFgIfAQU2MjkxOCAwMjczIDg0OTkgNTIwMCAwMjM5IDY1MDIgMDAwMCAwMjg5IDc5MTUgNTg2NCA0MjYwZGQCDw8PFgIfAGdkFgICAQ8PFgIfAQUINTU4NjQ0MjZkZAIRDw8WAh8BBQQzLjEwZGQCEw9kFhACAQ8PFgIeCEltYWdlVXJsBR5+L2ltYWdlbnMvYWJhcy9hYmFfbmZlX29mZi5naWZkZAIDDw8WAh8DBSJ+L2ltYWdlbnMvYWJhcy9hYmFfZW1pdGVudGVfb24uZ2lmZGQCBQ8PFgIfAwUbfi9pbWFnZW5zL2FiYXMvZGVzdF9vZmYuZ2lmZGQCBw8PFgIfAwUjfi9pbWFnZW5zL2FiYXMvYWJhX3Byb2R1dG9zX29mZi5naWZkZAIJDw8WAh8DBSF+L2ltYWdlbnMvYWJhcy9hYmFfdG90YWlzX29mZi5naWZkZAILDw8WAh8DBSV+L2ltYWdlbnMvYWJhcy9hYmFfdHJhbnNwb3J0ZV9vZmYuZ2lmZGQCDQ8PFgIfAwUjfi9pbWFnZW5zL2FiYXMvYWJhX2NvYnJhbmNhX29mZi5naWZkZAIPDw8WAh8DBSh+L2ltYWdlbnMvYWJhcy9hYmFfaW5mYWRpY2lvbmFpc19vZmYuZ2lmZGQCFQ9kFgRmD2QWAgIBD2QWAgIBDw8WAh8BBegcPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJFc3RpbG9zL25mZS12aXMuY3NzIiB0eXBlPSJ0ZXh0L2NzcyI+PHNjcmlwdCBsYW5ndWFnZT0iamF2YXNjcmlwdCIgc3JjPSIuLi8uLi9hcnF1aXZvc194c2x0L25mZS12aXMuanMiPjwvc2NyaXB0PjxkaXYgaWQ9Ik5GZSI+PHRhYmxlPjx0cj48dGQgY2xhc3M9InRhYmxlLXRpdHVsby1hYmEiPkRhZG9zIGRhIE5GQy1lPC90ZD48L3RyPjwvdGFibGU+PHRhYmxlPjx0ciBjbGFzcz0iY29sLTYiPjx0ZD48bGFiZWw+TW9kZWxvPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjY1PC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5Tw6lyaWU8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+MjA8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPk7Dum1lcm88L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+Mjg5Nzk8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPkRhdGEgZGUgRW1pc3PDo288L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+MDYvMDIvMjAxOCAyMDowMToxNC0wMzowMDwvc3Bhbj48L3RkPjx0ZD48bGFiZWw+DQogICAgICAgICAgICAgICAgRGF0YSBTYcOtZGEvRW50cmFkYQ0KICAgICAgICAgICAgICA8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+PC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5WYWxvcsKgVG90YWzCoGRhwqBOb3RhwqBGaXNjYWzCoMKgPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjU5Miw0MDwvc3Bhbj48L3RkPjwvdHI+PC90YWJsZT48dGFibGU+PHRyPjx0ZCBjbGFzcz0idGFibGUtdGl0dWxvLWFiYS1pbnRlcm5hIj5FbWl0ZW50ZTwvdGQ+PC90cj48L3RhYmxlPjx0YWJsZT48dHI+PHRkIGNsYXNzPSJmaXhvLW5mZS1jcGYtY25waiI+PGxhYmVsPkNOUEo8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+NzMuODQ5Ljk1Mi8wMDAyLTM5PC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5Ob21lIC8gUmF6w6NvIFNvY2lhbDwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj5BdGFrYXJlam8gRGlzdHJpYnVpZG9yIGRlIEFsaW1lbnRvcyBlIEJlYmlkYXMgRWlyZWxpPC9zcGFuPjwvdGQ+PHRkIGNsYXNzPSJmaXhvLW5mZS1pZXN0Ij48bGFiZWw+SW5zY3Jpw6fDo28gRXN0YWR1YWw8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+MDcyNTY3OTM1PC9zcGFuPjwvdGQ+PHRkIGNsYXNzPSJmaXhvLW5mZS11ZiI+PGxhYmVsPlVGPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPkJBPC9zcGFuPjwvdGQ+PC90cj48L3RhYmxlPjx0YWJsZT48dHI+PHRkIGNsYXNzPSJ0YWJsZS10aXR1bG8tYWJhLWludGVybmEiPkRlc3RpbmF0w6FyaW88L3RkPjwvdHI+PC90YWJsZT48dGFibGU+PHRyPjx0ZCB3aWR0aD0iMjAlIj48bGFiZWw+Q1BGPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjAyNC40MTIuNTE1LTU0PC9zcGFuPjwvdGQ+PHRkIHdpZHRoPSI1MCUiPjxsYWJlbD5Ob21lIC8gUmF6w6NvIFNvY2lhbDwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj48L3NwYW4+PC90ZD48dGQgd2lkdGg9IjE1JSI+PGxhYmVsPkluc2NyacOnw6NvIEVzdGFkdWFsPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjwvc3Bhbj48L3RkPjx0ZCB3aWR0aD0iMTUlIj48bGFiZWw+VUY8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIHdpZHRoPSIyMCUiPjxsYWJlbD5EZXN0aW5vIGRhIG9wZXJhw6fDo288L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+DQogICAgICAgICAgICAgICAgICAxIC0gT3BlcmHDp8OjbyBJbnRlcm5hDQogICAgICAgICAgICAgICAgPC9zcGFuPjwvdGQ+PHRkIHdpZHRoPSI1MCUiPjxsYWJlbD5Db25zdW1pZG9yIGZpbmFsPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPg0KICAgICAgICAgICAgICAgICAgMSAtIFNpbQ0KICAgICAgICAgICAgICAgIDwvc3Bhbj48L3RkPjx0ZCBjb2xzcGFuPSIyIiB3aWR0aD0iMzAlIj48bGFiZWw+UHJlc2Vuw6dhIGRvIENvbXByYWRvcjwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj4NCiAgICAgICAgICAgICAgICAgIDEgLSBPcGVyYcOnw6NvIHByZXNlbmNpYWwNCiAgICAgICAgICAgICAgICA8L3NwYW4+PC90ZD48L3RyPjwvdGFibGU+PHRhYmxlPjx0cj48dGQgY2xhc3M9InRhYmxlLXRpdHVsby1hYmEtaW50ZXJuYSI+RW1pc3PDo288L3RkPjwvdHI+PC90YWJsZT48dGFibGU+PHRyIGNsYXNzPSJjb2wtNCI+PHRkPjxsYWJlbD5Qcm9jZXNzbzwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj4NCiAgICAgICAgICAgICAgICAgICAgMCAtIGNvbSBhcGxpY2F0aXZvIGRvIENvbnRyaWJ1aW50ZQ0KICAgICAgICAgICAgICAgICAgPC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5WZXJzw6NvIGRvIFByb2Nlc3NvPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjYuMDwvc3Bhbj48L3RkPjx0ZD48bGFiZWw+DQogICAgICAgICAgICAgICAgVGlwbyBkZSBFbWlzc8OjbzwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj4NCiAgICAgICAgICAgICAgICAgICAgMSAtIE5vcm1hbA0KICAgICAgICAgICAgICAgICAgPC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5GaW5hbGlkYWRlPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPg0KICAgICAgICAgICAgICAgICAgICAxIC0gTm9ybWFsDQogICAgICAgICAgICAgICAgICA8L3NwYW4+PC90ZD48L3RyPjx0cj48dGQ+PGxhYmVsPk5hdHVyZXphIGRhIE9wZXJhw6fDo288L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+dmVuZGE8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPlRpcG8gZGEgT3BlcmHDp8OjbzwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj4NCiAgICAgICAgICAgICAgICAgICAgMSAtIFNhw61kYQ0KICAgICAgICAgICAgICAgICAgPC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5Gb3JtYSBkZSBQYWdhbWVudG88L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+DQogICAgICAgICAgICAgICAgICAgIDAgLSDDgCB2aXN0YQ0KICAgICAgICAgICAgICAgICAgPC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD48aT5EaWdlc3Q8L2k+IFZhbHVlIGRhIE5GLWUNCiAgICAgICAgICAgICAgPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPlVHT1NMSFVWVjVzM21RWC9xSTJEWE80dldCVT08L3NwYW4+PC90ZD48L3RyPjwvdGFibGU+PHRhYmxlPjx0cj48dGQgY2xhc3M9InRhYmxlLXRpdHVsby1hYmEtaW50ZXJuYSI+DQogICAgICAgICAgICBTaXR1YcOnw6NvIEF0dWFsOg0KICAgICAgICAgICAgwqBBVVRPUklaQURBDQogICAgICAgICAgICAoQW1iaWVudGUgZGUgYXV0b3JpemHDp8OjbzoNCiAgICAgICAgICAgICBwcm9kdcOnw6NvKQ0KICAgICAgICAgIDwvdGQ+PC90cj48L3RhYmxlPjx0YWJsZT48dHIgY2xhc3M9ImNvbC0zIj48dGQ+PGxhYmVsPkV2ZW50b3MgZGEgTkZDLWU8L2xhYmVsPjwvdGQ+PHRkPjxsYWJlbD5Qcm90b2NvbG88L2xhYmVsPjwvdGQ+PHRkPjxsYWJlbD5EYXRhIC8gSG9yYTwvbGFiZWw+PC90ZD48L3RyPjx0ciBjbGFzcz0iY29sLTMiPjx0ZD48c3BhbiBjbGFzcz0ibGluaGEiPiBBdXRvcml6YcOnw6NvIGRlIFVzbyAoQ8OzZC46IDExMDEwMCk8L3NwYW4+PC90ZD48dGQ+PHNwYW4gY2xhc3M9ImxpbmhhIj4zMjkxODAwNjEwMDk3OTc8L3NwYW4+PC90ZD48dGQ+PHNwYW4gY2xhc3M9ImxpbmhhIj4wNi8wMi8yMDE4IA0KICAgICAgICDDoHMNCiAgICAgIDIwOjAxOjE3LTAzOjAwPC9zcGFuPjwvdGQ+PC90cj48L3RhYmxlPjwvZGl2PmRkAgEPZBYCAgEPZBYCAgEPDxYCHwEF9ww8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9IkVzdGlsb3MvbmZlLXZpcy5jc3MiIHR5cGU9InRleHQvY3NzIj48ZGl2IGlkPSJFbWl0ZW50ZSI+PHRhYmxlPjx0cj48dGQgY2xhc3M9InRhYmxlLXRpdHVsby1hYmEiPkRhZG9zIGRvIEVtaXRlbnRlPC90ZD48L3RyPjwvdGFibGU+PHRhYmxlPjx0ciBjbGFzcz0iY29sLTIiPjx0ZD48bGFiZWw+Tm9tZSAvIFJhesOjbyBTb2NpYWw8L2xhYmVsPjxzcGFuIGNsYXNzPSJtdWx0aWxpbmUiPkF0YWthcmVqbyBEaXN0cmlidWlkb3IgZGUgQWxpbWVudG9zIGUgQmViaWRhcyBFaXJlbGk8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPk5vbWUgRmFudGFzaWE8L2xhYmVsPjxzcGFuIGNsYXNzPSJtdWx0aWxpbmUiPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZD48bGFiZWw+Q05QSjwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj43My44NDkuOTUyLzAwMDItMzk8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPkVuZGVyZcOnbzwvbGFiZWw+PHNwYW4gY2xhc3M9Im11bHRpbGluZSI+UlVBIEFCRUxBUkRPIEFORFJBREUgREUgQ0FSVkFMSE8swqANCiAgICAgICAgICAgICAgICAwwqANCiAgICAgICAgICAgICAgICA8L3NwYW4+PC90ZD48L3RyPjx0cj48dGQ+PGxhYmVsPkJhaXJybyAvIERpc3RyaXRvPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPkJPQ0EgRE8gUklPPC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5DRVA8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+NDE3MDYtNzEwPC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkPjxsYWJlbD5NdW5pY8OtcGlvPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjI5Mjc0MDgNCiAgICAgICAgICAgICAgICAtDQogICAgICAgICAgICAgICAgU0FMVkFET1I8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPlRlbGVmb25lPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZD48bGFiZWw+VUY8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+QkE8L3NwYW4+PC90ZD48dGQ+PGxhYmVsPlBhw61zPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZD48bGFiZWw+SW5zY3Jpw6fDo28gRXN0YWR1YWw8L2xhYmVsPjxzcGFuIGNsYXNzPSJsaW5oYSI+MDcyNTY3OTM1PC9zcGFuPjwvdGQ+PHRkPjxsYWJlbD5JbnNjcmnDp8OjbyBFc3RhZHVhbCBkbyBTdWJzdGl0dXRvIFRyaWJ1dMOhcmlvPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZD48bGFiZWw+SW5zY3Jpw6fDo28gTXVuaWNpcGFsPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPjwvc3Bhbj48L3RkPjx0ZD48bGFiZWw+TXVuaWPDrXBpbyBkYSBPY29ycsOqbmNpYSBkbyBGYXRvIEdlcmFkb3IgZG8gSUNNUzwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj4yOTI3NDA4PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkPjxsYWJlbD5DTkFFIEZpc2NhbDwvbGFiZWw+PHNwYW4gY2xhc3M9ImxpbmhhIj48L3NwYW4+PC90ZD48dGQ+PGxhYmVsPkPDs2RpZ28gZGUgUmVnaW1lIFRyaWJ1dMOhcmlvPC9sYWJlbD48c3BhbiBjbGFzcz0ibGluaGEiPg0KICAgICAgICAgICAgICAgICAgICAzIC0gUmVnaW1lIE5vcm1hbA0KICAgICAgICAgICAgICAgICAgPC9zcGFuPjwvdGQ+PC90cj48L3RhYmxlPjwvZGl2PmRkAhcPDxYCHwEFEzIzLzAyLzIwMTkgMjE6NTc6MzZkZBgCBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WCAULYnRuX2FiYV9uZmUFEGJ0bl9hYmFfZW1pdGVudGUFFGJ0bl9hYmFfZGVzdGluYXRhcmlvBRBidG5fYWJhX3Byb2R1dG9zBQ5idG5fYWJhX3RvdGFpcwUSYnRuX2FiYV90cmFuc3BvcnRlBRBidG5fYWJhX2NvYnJhbmNhBRVidG5fYWJhX2luZmFkaWNpb25haXMFEW10dl9jb250ZXVkb19hYmFzDw9kAgFkHx+QPwZbVDFhlUap1tuQzZXmMeMklI9S/hnLydFZXXk=" />
+        </div>
+        
+        <div class="aspNetHidden">
+            
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="0760F948" />
+            <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+                value="/wEdAAt6iScnOqABsKIMvGfW6IE96kS1sai6lotZCFK9SxZomrPpg+I/pvfnf3P71grPxq00HafZJn2ErOyGsHEocVXtWz425zZtCAZt1DeSjjmFaC5VTBVyHQ3PwNp3dyTeJfx0JasydRIqAkA0cftU58RErZlzicvkIqpzrYWtVnFHs2wB+n3u17kMYmwsLNlYLjHgBIecKOBar3SwXqLwiZCqgXExrqyliMB95+JCQlfpAyZfx4J+409h9ZNbsJR8+k4RPqlLdIpDx5ZExKskkNQv" />
+        </div>
+        
+        <table border="0" cellspacing="0" align="center" width="100%">
+            <tr>
+                <td class="cabecalho" style="cursor: pointer;">
+                    <table width="1024px" border="0" align="center">
+                        <tr>
+                            <td style="width: 10%;" rowspan="2"><img src="../../imagens/nfce.png" alt="NFC-e" /></td>
+                            
+                            <td style="width: 90%; height:30; top: 30px;" valign="bottom" class="titulo_nfce"
+                                colspan="3">
+                                Nota Fiscal de Consumidor Eletrônica<br />
+                                <span class="subtitulo_nfce">Portal Estadual da NFC-e</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;" valign="top" class="subtitulo_nfce">
+                                
+                            </td>
+                            <td style="width: 50%;" valign="top" class="subtitulo_nfce"> </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="1024px" border="0" align="center" cellpadding="2" cellspacing="0">
+                        <tr>
+                            <td width="100%" class="barra_superior_azul" height="1px"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+        <table width="95%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F8F8F8">
+            <tr>
+                <td align="center" valign="top">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" valign="top" bgcolor="#FFFFFF">
+                                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+                                    class="textoArial8">
+                                    <tr>
+                                        <td valign="top">
+                                            <br />
+                                            <table border="0" cellspacing="0" align="left" style="width: 1024px">
+                                                <tr>
+                                                    <td>
+                                                            
+                                                        <input type="submit" name="btn_visualizar_cupom"
+                                                            value="Visualizar em Cupom" id="btn_visualizar_cupom"
+                                                            class="botaoAzul_135_nfce" />    
+                                                            
+                                                            
+                                                            
+                                                        
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <br /><br />
+                                            <table width="100%" height="18" border="0" align="center" cellpadding="0"
+                                                cellspacing="0" bgcolor="#FFFFFF" class="textoVerdana9bold">
+                                                <tr>
+                                                    <td align="center" class="barra_titulo">
+                                                        Consulta da NFC-e
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <br />
+                                            
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td width="55%">
+                                                        <table width="100%" border="0" cellpadding="1" cellspacing="0"
+                                                            border-color="#FFFFFF">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td
+                                                                        style="border: 1px; border-style: solid; border-color: #F0F5FB; vertical-align: middle;">
+                                                                        
+                                                                        <strong>Chave de Acesso</strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td
+                                                                        style="border: 1px; border-style: solid; border-color:#F0F5FB; background-color:#F0F5FB;">
+                                                                        
+                                                                        <span id="lbl_chave_acesso"
+                                                                            class="labelConteudo">2918 0273 8499 5200
+                                                                            0239 6502 0000 0289 7915 5864
+                                                                            4260</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td width="2%" align="center">
+                                                         
+                                                    </td>
+                                                    <div id="pnl_cabecalho_numero">
+                                                        
+                                                        <td width="15%" height="100%">
+                                                            <table width="100%" border="0" cellpadding="1"
+                                                                cellspacing="0" bordercolor="#FFFFFF">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td
+                                                                            style="border: 1px; border-style: solid; border-color: #F0F5FB; vertical-align: middle;">
+                                                                            
+                                                                            <strong>Número NF-e </strong>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td
+                                                                            style="border: 1px; border-style: solid; border-color:#F0F5FB; background-color:#F0F5FB;">
+                                                                            
+                                                                            <span id="lbl_numero"
+                                                                                class="labelConteudo">55864426</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                        <td width="2%">
+                                                             
+                                                        </td>
+                                                        
+                                                    </div>
+                                                    <td width="15%" height="100%">
+                                                        <table width="100%" border="0" cellpadding="1" cellspacing="0"
+                                                            bordercolor="#FFFFFF">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td
+                                                                        style="border: 1px; border-style: solid; border-color: #F0F5FB; vertical-align: middle;">
+                                                                        
+                                                                        <strong>Versão XML </strong>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td
+                                                                        style="border: 1px; border-style: solid; border-color: #F0F5FB; background-color:#F0F5FB;">
+                                                                        
+                                                                        <span id="lbl_versao"
+                                                                            class="labelConteudo">3.10</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td>
+                                                        <div>
+                                                            <br />
+                                                            <table width="100%" border="0" cellpadding="0"
+                                                                cellspacing="0">
+                                                                <tr>
+                                                                    <td align="left">
+                                                                        <div id="pnl_abas"
+                                                                            style="border-style:None;height:18px;width:100%;">
+                                                                            
+                                                                            
+                                                                            <input type="image" name="btn_aba_nfe"
+                                                                                id="btn_aba_nfe"
+                                                                                src="../../imagens/abas/aba_nfe_off.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image" name="btn_aba_emitente"
+                                                                                id="btn_aba_emitente"
+                                                                                src="../../imagens/abas/aba_emitente_on.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image"
+                                                                                name="btn_aba_destinatario"
+                                                                                id="btn_aba_destinatario"
+                                                                                src="../../imagens/abas/dest_off.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image" name="btn_aba_produtos"
+                                                                                id="btn_aba_produtos"
+                                                                                src="../../imagens/abas/aba_produtos_off.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image" name="btn_aba_totais"
+                                                                                id="btn_aba_totais"
+                                                                                src="../../imagens/abas/aba_totais_off.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image"
+                                                                                name="btn_aba_transporte"
+                                                                                id="btn_aba_transporte"
+                                                                                src="../../imagens/abas/aba_transporte_off.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image" name="btn_aba_cobranca"
+                                                                                id="btn_aba_cobranca"
+                                                                                src="../../imagens/abas/aba_cobranca_off.gif"
+                                                                                align="absbottom" />
+                                                                            <input type="image"
+                                                                                name="btn_aba_infadicionais"
+                                                                                id="btn_aba_infadicionais"
+                                                                                src="../../imagens/abas/aba_infadicionais_off.gif"
+                                                                                align="absbottom" />
+                                                                            <br />
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                        
+                                                                        <br />
+                                                                        <table align="center"
+                                                                            style="height: 18px;width: 100%;" border="0"
+                                                                            cellpadding="0" cellspacing="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td colspan="9">
+                                                                                        <span
+                                                                                            id="uc_aba_emitente_txt_xslt">
+                                                                                            <link rel="stylesheet"
+                                                                                                href="Estilos/nfe-vis.css"
+                                                                                                type="text/css" />
+                                                                                            <div id="Emitente">
+                                                                                                <table>
+                                                                                                    <tr>
+                                                                                                        <td
+                                                                                                            class="table-titulo-aba">
+                                                                                                            Dados do
+                                                                                                            Emitente
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                                <table>
+                                                                                                    <tr class="col-2">
+                                                                                                        <td><label>Nome
+                                                                                                                / RazÃ£o
+                                                                                                                Social</label><span
+                                                                                                                class="multiline">Atakarejo
+                                                                                                                Distribuidor
+                                                                                                                de
+                                                                                                                Alimentos
+                                                                                                                e
+                                                                                                                Bebidas
+                                                                                                                Eireli</span>
+                                                                                                        </td>
+                                                                                                        <td><label>Nome
+                                                                                                                Fantasia</label><span
+                                                                                                                class="multiline"></span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>CNPJ</label><span
+                                                                                                                class="linha">73.849.952/0002-39</span>
+                                                                                                        </td>
+                                                                                                        <td><label>EndereÃ§o</label><span
+                                                                                                                class="multiline">RUA
+                                                                                                                ABELARDO
+                                                                                                                ANDRADE
+                                                                                                                DE
+                                                                                                                CARVALHO,Â 
+                                                                                                                0Â 
+                                                                                                            </span></td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>Bairro
+                                                                                                                /
+                                                                                                                Distrito</label><span
+                                                                                                                class="linha">BOCA
+                                                                                                                DO
+                                                                                                                RIO</span>
+                                                                                                        </td>
+                                                                                                        <td><label>CEP</label><span
+                                                                                                                class="linha">41706-710</span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>MunicÃ­pio</label><span
+                                                                                                                class="linha">2927408
+                                                                                                                -
+                                                                                                                SALVADOR</span>
+                                                                                                        </td>
+                                                                                                        <td><label>Telefone</label><span
+                                                                                                                class="linha"></span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>UF</label><span
+                                                                                                                class="linha">BA</span>
+                                                                                                        </td>
+                                                                                                        <td><label>PaÃ­s</label><span
+                                                                                                                class="linha"></span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>InscriÃ§Ã£o
+                                                                                                                Estadual</label><span
+                                                                                                                class="linha">072567935</span>
+                                                                                                        </td>
+                                                                                                        <td><label>InscriÃ§Ã£o
+                                                                                                                Estadual
+                                                                                                                do
+                                                                                                                Substituto
+                                                                                                                TributÃ¡rio</label><span
+                                                                                                                class="linha"></span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>InscriÃ§Ã£o
+                                                                                                                Municipal</label><span
+                                                                                                                class="linha"></span>
+                                                                                                        </td>
+                                                                                                        <td><label>MunicÃ­pio
+                                                                                                                da
+                                                                                                                OcorrÃªncia
+                                                                                                                do Fato
+                                                                                                                Gerador
+                                                                                                                do
+                                                                                                                ICMS</label><span
+                                                                                                                class="linha">2927408</span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td><label>CNAE
+                                                                                                                Fiscal</label><span
+                                                                                                                class="linha"></span>
+                                                                                                        </td>
+                                                                                                        <td><label>CÃ³digo
+                                                                                                                de
+                                                                                                                Regime
+                                                                                                                TributÃ¡rio</label><span
+                                                                                                                class="linha">
+                                                                                                                3 -
+                                                                                                                Regime
+                                                                                                                Normal
+                                                                                                            </span></td>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </span> 
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <table width="100%" height="18" border="0" align="center" cellpadding="0"
+                                                cellspacing="0">
+                                                <tr>
+                                                    <td align="center" class="barra_cinza">
+                                                        SECRETARIA DA FAZENDA DO ESTADO DA BAHIA
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <table width="100%" height="18" border="0" align="center" cellpadding="0"
+                                                cellspacing="0">
+                                                <tr>
+                                                    <td align="right" bgcolor="#ffffff" width="90%"
+                                                        class="textoVerdana8">
+                                                        Data/Hora:
+                                                    </td>
+                                                    <td class="textoArial7bold" width="*" align="left">
+                                                        <span id="lbl_datahora">23/02/2019 21:57:36</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <input type="hidden" name="hid_uf_dest" id="hid_uf_dest" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+    </form>
+</body>
+
+</html>
