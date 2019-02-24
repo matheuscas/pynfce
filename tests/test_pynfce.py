@@ -30,4 +30,14 @@ def test_version():
 def test_extract_emitente():
     html = _get_mock_data_to_emitente().html
     emitente = extract_emitente(html)
-    assert emitente is not None
+    keys = [
+        "razao_social",
+        "nome_fantasia",
+        "cnpj", "municipio",
+        "bairro",
+        "endereco",
+        "cep"
+    ]
+    for key in keys:
+        assert key in emitente.keys()
+        assert emitente.get(key, None) is not None
