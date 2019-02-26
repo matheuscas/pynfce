@@ -1,6 +1,7 @@
 import os
 from pynfce import __version__
 from pynfce.extraction.emitente import extract_emitente
+from pynfce.extraction.nfe import extract_nfe
 from requests_html import HTMLSession
 from requests_file import FileAdapter
 
@@ -23,8 +24,12 @@ def _get_mock_data_to_emitente():
     return _get("emitente_mock.html")
 
 
+def _get_mock_data_to_nfe():
+    return _get("nfe_mock.html")
+
+
 def test_version():
-    assert __version__ == '0.1.0'
+    assert __version__ == '0.2.0'
 
 
 def test_extract_emitente():
@@ -41,3 +46,19 @@ def test_extract_emitente():
     for key in keys:
         assert key in emitente.keys()
         assert emitente.get(key, None) is not None
+
+
+def test_extract_nfe():
+    html = _get_mock_data_to_nfe().html
+    nfe = extract_nfe(html)
+    keys = [
+        "modelo",
+        "serie",
+        "numero",
+        "valor",
+        "chave_acesso"
+    ]
+    print(nfe)
+    for key in keys:
+        assert key in nfe.keys()
+        assert nfe.get(key, None) is not None
