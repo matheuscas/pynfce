@@ -58,7 +58,6 @@ def test_extract_nfe():
         "valor",
         "chave_acesso"
     ]
-    print(nfe)
     for key in keys:
         assert key in nfe.keys()
         assert nfe.get(key, None) is not None
