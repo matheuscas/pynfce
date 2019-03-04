@@ -1,10 +1,15 @@
 import os
 from pynfce import __version__
-from pynfce.extraction.emitente import extract_emitente
 from pynfce.extraction.nfe import extract_nfe
 from pynfce.extraction.produtos import extract_produtos
+from pynfce.extraction.states import (
+    get_available_states_indexes,
+    load_state_class
+)
 from requests_html import HTMLSession
 from requests_file import FileAdapter
+import pytest
+import random
 
 session = HTMLSession()
 session.mount('file://', FileAdapter())
@@ -45,7 +50,8 @@ def random_state():
 
 def test_extract_emitente(random_state):
     html = _get_mock_data_to_emitente().html
-    emitente = extract_emitente(html)
+    state = load_state_class(random_state)
+    emitente = state().extract_emitente(html)
     keys = [
         "razao_social",
         "nome_fantasia",
