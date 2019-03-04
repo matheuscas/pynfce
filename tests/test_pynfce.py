@@ -37,7 +37,13 @@ def test_version():
     assert __version__ == '0.3.0'
 
 
-def test_extract_emitente():
+@pytest.fixture
+def random_state():
+    states_indexes = get_available_states_indexes()
+    return random.randint(0, len(states_indexes) - 1)
+
+
+def test_extract_emitente(random_state):
     html = _get_mock_data_to_emitente().html
     emitente = extract_emitente(html)
     keys = [
