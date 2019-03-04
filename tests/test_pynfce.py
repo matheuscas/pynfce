@@ -2,6 +2,7 @@ import os
 from pynfce import __version__
 from pynfce.extraction.emitente import extract_emitente
 from pynfce.extraction.nfe import extract_nfe
+from pynfce.extraction.produtos import extract_produtos
 from requests_html import HTMLSession
 from requests_file import FileAdapter
 
@@ -26,6 +27,10 @@ def _get_mock_data_to_emitente():
 
 def _get_mock_data_to_nfe():
     return _get("nfe_mock.html")
+
+
+def _get_mock_data_to_produtos():
+    return _get("produtos_mock.html")
 
 
 def test_version():
@@ -61,3 +66,22 @@ def test_extract_nfe():
     for key in keys:
         assert key in nfe.keys()
         assert nfe.get(key, None) is not None
+
+
+def test_extract_produtos():
+    html = _get_mock_data_to_produtos().html
+    produtos = extract_produtos(html)
+    assert len(produtos) > 0
+    keys = [
+        "descricao",
+        "qtd",
+        "unidade_comercial",
+        "valor_unitario",
+        "valor_total",
+        "ncm",
+        "desconto",
+        "ean"
+    ]
+    for key in keys:
+        assert key in produtos[0].keys()
+        assert produtos[0].get(key, None) is not None
