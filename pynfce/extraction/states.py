@@ -85,3 +85,12 @@ class Bahia:
             "endereco": html.find(self.ENDERECO, first=first).text,
             "cep": html.find(self.CEP, first=first).text
         }
+
+    def extract_nfe(self, html, first=True):
+        return {
+            "modelo": html.find(self.MODELO, first=first).text,
+            "serie": html.find(self.SERIE, first=first).text,
+            "numero": html.find(self.NUMERO, first=first).text,
+            "valor": html.find(self.VALOR, first=first).text,
+            "chave_acesso": html.find(self.CHAVE_ACESSO, first=first).text
+        }

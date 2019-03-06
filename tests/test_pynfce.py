@@ -1,6 +1,5 @@
 import os
 from pynfce import __version__
-from pynfce.extraction.nfe import extract_nfe
 from pynfce.extraction.produtos import extract_produtos
 from pynfce.extraction.states import (
     get_available_states_indexes,
@@ -64,19 +63,21 @@ def test_extract_emitente(states):
             assert emitente.get(key, None) is not None
 
 
-def test_extract_nfe():
+def test_extract_nfe(states):
     html = _get_mock_data_to_nfe().html
-    nfe = extract_nfe(html)
-    keys = [
-        "modelo",
-        "serie",
-        "numero",
-        "valor",
-        "chave_acesso"
-    ]
-    for key in keys:
-        assert key in nfe.keys()
-        assert nfe.get(key, None) is not None
+    for state_index in states:
+        state = load_state_class(state_index)
+        nfe = state().extract_nfe(html)
+        keys = [
+            "modelo",
+            "serie",
+            "numero",
+            "valor",
+            "chave_acesso"
+        ]
+        for key in keys:
+            assert key in nfe.keys()
+            assert nfe.get(key, None) is not None
 
 
 def test_extract_produtos():
