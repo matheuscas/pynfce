@@ -9,7 +9,6 @@ from pynfce.extraction.states import (
 from requests_html import HTMLSession
 from requests_file import FileAdapter
 import pytest
-import random
 
 session = HTMLSession()
 session.mount('file://', FileAdapter())
@@ -43,26 +42,26 @@ def test_version():
 
 
 @pytest.fixture
-def random_state():
-    states_indexes = get_available_states_indexes()
-    return random.randint(0, len(states_indexes) - 1)
+def states():
+    return get_available_states_indexes()
 
 
-def test_extract_emitente(random_state):
+def test_extract_emitente(states):
     html = _get_mock_data_to_emitente().html
-    state = load_state_class(random_state)
-    emitente = state().extract_emitente(html)
-    keys = [
-        "razao_social",
-        "nome_fantasia",
-        "cnpj", "municipio",
-        "bairro",
-        "endereco",
-        "cep"
-    ]
-    for key in keys:
-        assert key in emitente.keys()
-        assert emitente.get(key, None) is not None
+    for state_index in states:
+        state = load_state_class(state_index)
+        emitente = state().extract_emitente(html)
+        keys = [
+            "razao_social",
+            "nome_fantasia",
+            "cnpj", "municipio",
+            "bairro",
+            "endereco",
+            "cep"
+        ]
+        for key in keys:
+            assert key in emitente.keys()
+            assert emitente.get(key, None) is not None
 
 
 def test_extract_nfe():
