@@ -36,7 +36,7 @@ def _get_mock_data_to_produtos():
 
 
 def test_version():
-    assert __version__ == '0.3.0'
+    assert __version__ == '0.3.1'
 
 
 @pytest.fixture
