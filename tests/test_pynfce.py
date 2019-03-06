@@ -1,6 +1,5 @@
 import os
 from pynfce import __version__
-from pynfce.extraction.produtos import extract_produtos
 from pynfce.extraction.states import (
     get_available_states_indexes,
     load_state_class
@@ -80,20 +79,22 @@ def test_extract_nfe(states):
             assert nfe.get(key, None) is not None
 
 
-def test_extract_produtos():
+def test_extract_produtos(states):
     html = _get_mock_data_to_produtos().html
-    produtos = extract_produtos(html)
-    assert len(produtos) > 0
-    keys = [
-        "descricao",
-        "qtd",
-        "unidade_comercial",
-        "valor_unitario",
-        "valor_total",
-        "ncm",
-        "desconto",
-        "ean"
-    ]
-    for key in keys:
-        assert key in produtos[0].keys()
-        assert produtos[0].get(key, None) is not None
+    for state_index in states:
+        state = load_state_class(state_index)
+        produtos = state().extract_produtos(html)
+        assert len(produtos) > 0
+        keys = [
+            "descricao",
+            "qtd",
+            "unidade_comercial",
+            "valor_unitario",
+            "valor_total",
+            "ncm",
+            "desconto",
+            "ean"
+        ]
+        for key in keys:
+            assert key in produtos[0].keys()
+            assert produtos[0].get(key, None) is not None

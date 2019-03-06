@@ -94,3 +94,31 @@ class Bahia:
             "valor": html.find(self.VALOR, first=first).text,
             "chave_acesso": html.find(self.CHAVE_ACESSO, first=first).text
         }
+
+    def extract_produtos(self, html):
+
+        descricoes = html.find(self.DESCRICOES, first=False)
+        qtds = html.find(self.QTDS, first=False)
+        unidades_comerciais = html.find(
+            self.UNIDADES_COMERCIAIS,
+            first=False
+        )
+        valores_unitarios = html.find(self.VALORES_UNITARIOS, first=False)
+        valores_totais = html.find(self.VALORES_TOTAIS, first=False)
+        ncms = html.find(self.CODIGOS_NCM, first=False)
+        descontos = html.find(self.DESCONTOS, first=False)
+        eans = html.find(self.EANS, first=False)
+
+        result = []
+        for index in list(range(len(descricoes))):
+            result.append({
+                "descricao": descricoes[index].text,
+                "qtd": qtds[index].text,
+                "unidade_comercial": unidades_comerciais[index].text,
+                "valor_total": valores_totais[index].text,
+                "valor_unitario": valores_unitarios[index].text,
+                "ncm": ncms[index].text,
+                "desconto": descontos[index].text,
+                "ean": eans[index].text
+            })
+        return result
