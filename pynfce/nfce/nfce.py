@@ -7,4 +7,4 @@ def get_nfce(url, state=BA):
     response = session.get(url)
 
     state = load_state_class(state)
-    return state.get_nfce(response)
+    return state(session).get_nfce(response)
