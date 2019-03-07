@@ -1,7 +1,5 @@
-CONSULTA_DANFE = "http://nfe.sefaz.ba.gov.br/\
-                    servicos/nfce/modulos/geral/NFCEC_consulta_danfe.aspx"
-CONSULTA_ABAS = "http://nfe.sefaz.ba.gov.br/\
-                    servicos/nfce/modulos/geral/NFCEC_consulta_abas.aspx"
+CONSULTA_DANFE = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_danfe.aspx"  # noqa: E501
+CONSULTA_ABAS = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_abas.aspx"  # noqa: E501
 
 
 class Bahia:
@@ -161,10 +159,10 @@ class Bahia:
         return self.session.post(CONSULTA_DANFE, data=data)
 
     def _navigate_to_emitente_tab(self, response):
-        self._navigateTo(response, self.ABA_EMITENTE_X_Y)
+        return self._navigateTo(response, self.ABA_EMITENTE_X_Y)
 
     def _navigate_to_produtos_tab(self, response):
-        self._navigateTo(response, self.ABA_PRODUTOS_X_Y)
+        return self._navigateTo(response, self.ABA_PRODUTOS_X_Y)
 
     def get_nfce(self, first_response):
         # click on "Visualizar Abas"
