@@ -1,21 +1,7 @@
-BA = 0
-
-_states_mapping = {}
-_states_mapping[BA] = "Bahia"
-
-
-def get_state_name(state=BA):
-    return _states_mapping[state]
-
-
-def load_state_class(state):
-    state_name = get_state_name(state)
-    module = __import__("states", globals(), locals(), [], 1)
-    return getattr(module, state_name)
-
-
-def get_available_states_indexes():
-    return _states_mapping.keys()
+CONSULTA_DANFE = "http://nfe.sefaz.ba.gov.br/\
+                    servicos/nfce/modulos/geral/NFCEC_consulta_danfe.aspx"
+CONSULTA_ABAS = "http://nfe.sefaz.ba.gov.br/\
+                    servicos/nfce/modulos/geral/NFCEC_consulta_abas.aspx"
 
 
 class Bahia:
@@ -66,6 +52,20 @@ class Bahia:
 
     EANS = "#Prod > div > table > tr > td > table:nth-child(2) > tr > td >\
         table:nth-child(2) > tr:nth-child(2) > td:nth-child(1) > span"
+
+    ABA_EMITENTE_X_Y = {
+        "btn_aba_emitente.x": 25,
+        "btn_aba_emitente.y": 11,
+        "hid_uf_dest": ""
+    }
+    ABA_PRODUTOS_X_Y = {
+        "btn_aba_produtos.x": 46,
+        "btn_aba_produtos.y": 8,
+        "hid_uf_dest": ""
+    }
+
+    def __init__(self, session):
+        self.session = session
 
     def _get_municipio(self, municipio):
         municipio_parts = municipio.split("-")
@@ -122,3 +122,70 @@ class Bahia:
                 "ean": eans[index].text
             })
         return result
+
+    def _get_basic_hidden_form_data(self, response):
+        return {
+            "viewstate": response.html.find("#__VIEWSTATE", first=True),
+            "viewstate_gen": response.html.find(
+                "#__VIEWSTATEGENERATOR",
+                first=True
+            ),
+            "event_validation": response.html.find(
+                "#__EVENTVALIDATION",
+                first=True
+            )
+        }
+
+    def _navigateTo(self, response, tab):
+        basic = self._get_basic_hidden_form_data(response)
+
+        data = {
+            "__VIEWSTATE": basic.get("viewstate").attrs["value"],
+            "__VIEWSTATEGENERATOR": basic.get("viewstate_gen").attrs["value"],
+            "__EVENTVALIDATION": basic.get("event_validation").attrs["value"],
+        }
+
+        payload = {**data, **tab}
+        return self.session.post(CONSULTA_ABAS, data=payload)
+
+    def _navigate_to_nfe_tab(self, response):
+        basic = self._get_basic_hidden_form_data(response)
+
+        data = {
+            "__VIEWSTATE": basic.get("viewstate").attrs["value"],
+            "__VIEWSTATEGENERATOR": basic.get("viewstate_gen").attrs["value"],
+            "__EVENTVALIDATION": basic.get("event_validation").attrs["value"],
+            "btn_visualizar_abas": "Visualizar em Abas"
+        }
+
+        return self.session.post(CONSULTA_DANFE, data=data)
+
+    def _navigate_to_emitente_tab(self, response):
+        self._navigateTo(response, self.ABA_EMITENTE_X_Y)
+
+    def _navigate_to_produtos_tab(self, response):
+        self._navigateTo(response, self.ABA_PRODUTOS_X_Y)
+
+    def get_nfce(self, first_response):
+        # click on "Visualizar Abas"
+        nfe_tab_response = self._navigate_to_nfe_tab(first_response)
+        # extract nfe
+        nfe = self.extract_nfe(nfe_tab_response.html)
+
+        # click on "Emitente"
+        emitente_tab_response = self._navigate_to_emitente_tab(
+            nfe_tab_response
+        )
+        # extract emitente
+        emitente = self.extract_emitente(emitente_tab_response.html)
+
+        # click on "Produtos"
+        produtos_tab_resp = self._navigate_to_produtos_tab(nfe_tab_response)
+        # extract produtos
+        produtos = self.extract_produtos(produtos_tab_resp.html)
+
+        return {
+            **nfe,
+            "emitente": emitente,
+            "produtos": produtos
+        }
