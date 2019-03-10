@@ -1,4 +1,4 @@
-from .crawling import wait_random_delay
+from .crawling import wait_random_delay, get_random_user_agent
 CONSULTA_DANFE = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_danfe.aspx"  # noqa: E501
 CONSULTA_ABAS = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_abas.aspx"  # noqa: E501
 
@@ -146,7 +146,9 @@ class Bahia:
 
         payload = {**data, **tab}
         wait_random_delay()
-        return self.session.post(CONSULTA_ABAS, data=payload)
+        return self.session.post(CONSULTA_ABAS, data=payload, headers={
+            'User-Agent': get_random_user_agent()
+        })
 
     def _navigate_to_nfe_tab(self, response):
         basic = self._get_basic_hidden_form_data(response)
@@ -158,7 +160,9 @@ class Bahia:
             "btn_visualizar_abas": "Visualizar em Abas"
         }
         wait_random_delay()
-        return self.session.post(CONSULTA_DANFE, data=data)
+        return self.session.post(CONSULTA_DANFE, data=data, headers={
+            'User-Agent': get_random_user_agent()
+        })
 
     def _navigate_to_emitente_tab(self, response):
         return self._navigateTo(response, self.ABA_EMITENTE_X_Y)
