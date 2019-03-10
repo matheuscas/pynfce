@@ -1,3 +1,4 @@
+from .crawling import wait_random_delay
 CONSULTA_DANFE = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_danfe.aspx"  # noqa: E501
 CONSULTA_ABAS = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_abas.aspx"  # noqa: E501
 
@@ -144,6 +145,7 @@ class Bahia:
         }
 
         payload = {**data, **tab}
+        wait_random_delay()
         return self.session.post(CONSULTA_ABAS, data=payload)
 
     def _navigate_to_nfe_tab(self, response):
@@ -155,7 +157,7 @@ class Bahia:
             "__EVENTVALIDATION": basic.get("event_validation").attrs["value"],
             "btn_visualizar_abas": "Visualizar em Abas"
         }
-
+        wait_random_delay()
         return self.session.post(CONSULTA_DANFE, data=data)
 
     def _navigate_to_emitente_tab(self, response):
