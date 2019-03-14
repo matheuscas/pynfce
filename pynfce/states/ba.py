@@ -2,6 +2,12 @@ from .crawling import wait_random_delay, get_random_user_agent
 CONSULTA_DANFE = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_danfe.aspx"  # noqa: E501
 CONSULTA_ABAS = "http://nfe.sefaz.ba.gov.br/servicos/nfce/modulos/geral/NFCEC_consulta_abas.aspx"  # noqa: E501
 
+CUSTOM_HEADERS = {
+    "Cache-Control": "no-cache",
+    "Origin": "http://nfe.sefaz.ba.gov.br",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"
+}
+
 
 class Bahia:
     # Aba de Emitente
@@ -146,9 +152,11 @@ class Bahia:
 
         payload = {**data, **tab}
         wait_random_delay()
-        return self.session.post(CONSULTA_ABAS, data=payload, headers={
-            'User-Agent': get_random_user_agent()
-        })
+        return self.session.post(
+            CONSULTA_ABAS,
+            data=payload,
+            headers=self._get_custom_headers(CONSULTA_ABAS)
+        )
 
     def _navigate_to_nfe_tab(self, response):
         basic = self._get_basic_hidden_form_data(response)
@@ -160,15 +168,24 @@ class Bahia:
             "btn_visualizar_abas": "Visualizar em Abas"
         }
         wait_random_delay()
-        return self.session.post(CONSULTA_DANFE, data=data, headers={
-            'User-Agent': get_random_user_agent()
-        })
+        return self.session.post(
+            CONSULTA_DANFE,
+            data=data,
+            headers=self._get_custom_headers(CONSULTA_DANFE)
+        )
 
     def _navigate_to_emitente_tab(self, response):
         return self._navigateTo(response, self.ABA_EMITENTE_X_Y)
 
     def _navigate_to_produtos_tab(self, response):
         return self._navigateTo(response, self.ABA_PRODUTOS_X_Y)
+
+    def _get_custom_headers(self, referer):
+        return {
+            **CUSTOM_HEADERS,
+            'User-Agent': get_random_user_agent(),
+            "Referer": referer
+        }
 
     def get_nfce(self, first_response):
         # click on "Visualizar Abas"
