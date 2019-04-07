@@ -9,8 +9,8 @@ def get_state_name(state):
 
 
 def load_state_class(state):
-    state_name = get_state_name(state)
     module = __import__(f"{state}", globals(), locals(), [], 1)
+    state_name = get_state_name(state)
     return getattr(module, state_name)
 
 
