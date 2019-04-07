@@ -1,4 +1,4 @@
-from pynfce import __version__
+from pynfce import __version__, get_nfce
 from pynfce.states.states import (
     BA,
     get_available_states_indexes,
@@ -112,3 +112,11 @@ def test_extract_ncfe_ba(states):
     for key in keys:
         assert key in nfce.keys()
         assert nfce.get(key, None) is not None
+
+
+def test_unavailable_state():
+    url = "any url"
+    state = "bb"
+    error_msg = f"No module named 'pynfce.states.{state}'"
+    with pytest.raises(ModuleNotFoundError, match=error_msg):
+        get_nfce(url, state)
