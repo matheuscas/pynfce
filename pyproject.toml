@@ -13,6 +13,8 @@ pytest = "^3.0"
 flake8 = "^3.7"
 requests_file = "^1.4"
 mock = "^2.0"
+codecov = "^2.0"
+pytest-cov = "^2.7"
 
 [build-system]
 requires = ["poetry>=0.12"]
