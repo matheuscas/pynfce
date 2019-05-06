@@ -7,11 +7,14 @@ Descrição:
 Pacote python que extrai os dados de uma NFCe a partir da URL do QRCode da nota.
 
 **Somente Python 3!**
+
 .. image:: https://travis-ci.org/matheuscas/pynfce.svg?branch=master
     :target: https://travis-ci.org/matheuscas/pynfce
+
 .. image:: https://codecov.io/gh/matheuscas/pynfce/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/matheuscas/pynfce
-.. image:: https://badge.fury.io/py/pynfce.svg
+    :target: https://codecov.io/gh/matheuscas/pynfce
+
+.. image:: https://badge.fury.io/py/pynfce.svg  
     :target: https://badge.fury.io/py/pynfce
 
 
