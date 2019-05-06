@@ -10,6 +10,6 @@ before_install:
 install:
   - poetry install
 script:
-  - pytest --cov=pycnpj_crawler
+  - pytest --cov=pynfce
 after_success:
   - codecov
